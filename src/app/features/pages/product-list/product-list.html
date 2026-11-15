@@ -1,0 +1,62 @@
+
+<section class="products-page">
+  <div class="products-toolbar">
+    <input
+      type="search"
+      class="products-toolbar__search"
+      placeholder="Search..."
+      aria-label="Buscar productos"
+      [value]="searchTerm()"
+      (input)="onSearchInput($event)"
+    />
+
+    <a
+      routerLink="/products/new"
+      class="products-toolbar__add-button"
+    >
+      Agregar
+    </a>
+  </div>
+
+  <div class="products-card">
+    @if (loading()) {
+      <app-loading-skeleton />
+    } @else if (error()) {
+      <div class="products-error" role="alert">
+        <p>{{ error() }}</p>
+
+        <button type="button" (click)="loadProducts()">
+          Reintentar
+        </button>
+      </div>
+    } @else {
+      @if (filteredProducts().length === 0) {
+        <div class="products-empty" role="status">
+          No se encontraron productos.
+        </div>
+      } @else {
+        <app-product-table [products]="visibleProducts()" />
+      }
+
+      <footer class="products-footer">
+        <span class="products-footer__count">
+          {{ filteredProducts().length }} Resultados
+        </span>
+
+        <div class="products-footer__controls">
+
+          <select
+            id="pageSize"
+            class="products-footer__page-size"
+            [value]="pageSize()"
+            (change)="onPageSizeChange($event)"
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+      </footer>
+    }
+  </div>
+</section>

@@ -1,0 +1,120 @@
+@use 'variables' as vars;
+@use 'mixins' as mixins;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.product-table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: vars.$color-surface;
+
+  &__wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  &__head {
+    background-color: vars.$color-table-header;
+  }
+
+  &__heading {
+    padding: 1rem 0.875rem;
+    color: vars.$color-text-primary;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid vars.$color-border;
+  }
+
+  &__heading--logo,
+  &__cell--logo {
+    width: 10%;
+    text-align: center;
+  }
+
+  &__heading--name,
+  &__cell--name {
+    width: 24%;
+  }
+
+  &__heading--description,
+  &__cell--description {
+    width: 28%;
+  }
+
+  &__heading--date,
+  &__cell--date {
+    width: 18%;
+  }
+
+  &__row {
+    border-bottom: 1px solid vars.$color-border;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: vars.$color-table-header;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__cell {
+    height: 52px;
+    padding: 0.5rem 0.875rem;
+    color: vars.$color-text-primary;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.4;
+    vertical-align: middle;
+  }
+
+  &__cell--name {
+    font-weight: 600;
+  }
+
+  &__cell--description {
+    color: vars.$color-text-secondary;
+  }
+
+  &__cell--date {
+    white-space: nowrap;
+  }
+
+  &__logo {
+    display: block;
+    width: 36px;
+    height: 36px;
+    margin: 0 auto;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: vars.$color-avatar;
+  }
+
+  &__description {
+    display: block;
+    max-width: 100%;
+    @include mixins.truncate-text;
+  }
+
+  @include mixins.respond-to(tablet) {
+    min-width: 850px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-table__row {
+      transition: none;
+    }
+  }
+
+  @include mixins.respond-to(tablet) {
+    min-width: 700px;
+  }
+}

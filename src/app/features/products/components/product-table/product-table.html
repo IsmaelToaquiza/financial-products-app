@@ -1,0 +1,48 @@
+<div class="product-table__wrapper">
+  <table class="product-table">
+    <thead class="product-table__head">
+      <tr>
+        <th scope="col" class="product-table__heading product-table__heading--logo">Logo</th>
+        <th scope="col" class="product-table__heading product-table__heading--name">
+          Nombre del producto
+        </th>
+        <th scope="col" class="product-table__heading product-table__heading--description">
+          Descripción
+        </th>
+        <th scope="col" class="product-table__heading product-table__heading--date">
+          Fecha de liberación
+        </th>
+        <th scope="col" class="product-table__heading product-table__heading--date">
+          Fecha de reestructuración
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (product of products(); track product.id) {
+        <tr class="product-table__row">
+          <td class="product-table__cell product-table__cell--logo">
+            <img
+              class="product-table__logo"
+              [src]="product.logo"
+              [alt]="product.name"
+              width="40"
+              height="40"
+            />
+          </td>
+          <td class="product-table__cell product-table__cell--name">{{ product.name }}</td>
+          <td class="product-table__cell product-table__cell--description">
+            <span class="product-table__description" [title]="product.description">
+              {{ product.description }}
+            </span>
+          </td>
+          <td class="product-table__cell product-table__cell--date">
+            {{ product.dateRelease | date: 'dd/MM/yyyy': 'UTC' }}
+          </td>
+          <td class="product-table__cell product-table__cell--date">
+            {{ product.dateRevision | date: 'dd/MM/yyyy': 'UTC' }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

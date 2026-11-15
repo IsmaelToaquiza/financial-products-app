@@ -1,0 +1,104 @@
+@use 'variables' as vars;
+@use 'mixins' as mixins;
+:host {
+  display: block;
+  width: 100%;
+}
+
+.products-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: vars.$color-background;
+}
+
+.products-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+
+  &__search {
+    width: 200px;
+    height: 2.5rem;
+    border: 1px solid vars.$color-input-border;
+    border-radius: vars.$radius-md;
+    padding: 0 0.75rem;
+    background-color: vars.$color-surface;
+    color: vars.$color-text-primary;
+  }
+
+  &::placeholder {
+    color: vars.$color-text-secondary;
+  }
+
+  @include mixins.focus-ring(vars.$color-primary);
+
+  &__add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.2rem 1rem;
+    border: none;
+    background-color: vars.$color-accent;
+    color: vars.$color-text-primary;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: vars.$radius-sm;
+
+    @include mixins.focus-ring(vars.$color-accent);
+
+    &:hover {
+      background-color: vars.$color-accent-disabled;
+      color: vars.$color-text-primary;
+    }
+  }
+}
+
+.products-card {
+  width: 100%;
+  background-color: vars.$color-surface;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.products-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+
+  &__count {
+    font-size: 0.875rem;
+    color: vars.$color-text-primary;
+    font-weight: bold;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    select {
+      padding: 0.5rem 1rem;
+      border: 2px solid vars.$color-select-border;
+      border-radius: vars.$radius-sm ;
+      background-color: vars.$color-surface;
+      color: vars.$color-text-primary;
+    }
+  }
+}
+
+
+
+.products-error,
+.products-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: vars.$color-text-secondary;
+}

@@ -1,0 +1,15 @@
+<div class="loading-skeleton" role="status">
+  <span class="loading-skeleton-title">
+    Cargando productos financieros...
+  </span>
+
+  @for (row of rows; track row) {
+    <div class="skeleton-row" aria-hidden="true">
+      <div class="skeleton-cell skeleton-id"></div>
+      <div class="skeleton-cell skeleton-name"></div>
+      <div class="skeleton-cell skeleton-description"></div>
+      <div class="skeleton-cell skeleton-price"></div>
+      <div class="skeleton-cell skeleton-date"></div>
+    </div>
+  }
+</div>
