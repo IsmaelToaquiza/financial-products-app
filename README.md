@@ -1,59 +1,85 @@
-# FinancialProductsApp
+# Financial Products App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.7.
+Aplicación web desarrollada con **Angular y TypeScript** como parte del reto técnico de **Devsu**.
 
-## Development server
+Permite gestionar productos financieros mediante una interfaz responsive, con funcionalidades de listado, búsqueda, creación, edición y eliminación de productos.
 
-To start a local development server, run:
+## Tecnologías utilizadas
 
-```bash
-ng serve
-```
+- Angular 22 y TypeScript
+- SCSS
+- Angular Reactive Forms
+- RxJS y Signals
+- Font Awesome
+- Jest
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Requisitos previos
 
-## Code scaffolding
+Para ejecutar el proyecto necesitas:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Node.js:** `26.13.1`
+- **npm:** `11.20.0`
+- El backend proporcionado para la prueba técnica.
 
-```bash
-ng generate component component-name
-```
+## Instalación
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+**1. Clonar el repositorio**
 
 ```bash
-ng build
+git clone <URL_DEL_REPOSITORIO>
+cd financial-products-app
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+**2. Configurar Node.js**
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Si utilizas NVM:
 
 ```bash
-ng test
+nvm install
+nvm use
+npm install -g npm@11.20.0
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+**3. Instalar las dependencias**
 
 ```bash
-ng e2e
+npm ci
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+**4. Iniciar el backend**
 
-## Additional Resources
+Ejecuta el backend de la prueba técnica en:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+`http://127.0.0.1:3002`
+
+**5. Iniciar la aplicación**
+
+```bash
+npm start
+```
+
+Abre en el navegador:
+
+**http://localhost:4200**
+
+La aplicación utiliza un proxy para comunicarse con el backend local.
+
+## Pruebas
+
+Para ejecutar las pruebas unitarias:
+
+```bash
+npm test
+```
+
+## Compilación
+
+Para generar la versión de producción:
+
+```bash
+npm run build
+```
+
+---
+
+Desarrollado como parte del reto técnico de **Devsu**.
