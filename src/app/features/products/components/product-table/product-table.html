@@ -1,4 +1,4 @@
-<div class="product-table__wrapper">
+<div class="product-table__wrapper" (scroll)="closeActions()">
   <table class="product-table">
     <thead class="product-table__head">
       <tr>
@@ -15,6 +15,7 @@
         <th scope="col" class="product-table__heading product-table__heading--date">
           Fecha de reestructuración
         </th>
+        <th scope="col" class="product-table__heading">Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -36,10 +37,53 @@
             </span>
           </td>
           <td class="product-table__cell product-table__cell--date">
-            {{ product.dateRelease | date: 'dd/MM/yyyy': 'UTC' }}
+            {{ product.dateRelease | calendarDate }}
           </td>
           <td class="product-table__cell product-table__cell--date">
-            {{ product.dateRevision | date: 'dd/MM/yyyy': 'UTC' }}
+            {{ product.dateRevision | calendarDate }}
+          </td>
+
+          <td class="product-table__cell product-table__cell--actions">
+            <div class="product-table__actions">
+              <button
+                #trigger
+                type="button"
+                class="product-table__menu-trigger"
+                [attr.popovertarget]="'product-actions-' + product.id"
+                [attr.aria-label]="'Acciones de ' + product.name"
+                aria-expanded="false"
+                (click)="toggleActions($event, actions)"
+              >
+                <span aria-hidden="true">⋮</span>
+              </button>
+              <div
+                #actions
+                popover="auto"
+                [id]="'product-actions-' + product.id"
+                class="product-table__dropdown"
+                role="group"
+                [attr.aria-label]="'Acciones de ' + product.name"
+                (toggle)="onActionsToggle($event, trigger)"
+              >
+                <a
+                  autofocus
+                  class="product-table__action product-table__action--edit"
+                  [routerLink]="['/products/update', product.id]"
+                  [attr.aria-label]="'Editar ' + product.name"
+                  (click)="actions.hidePopover()"
+                >
+                  Editar
+                </a>
+                <button
+                  type="button"
+                  class="product-table__action product-table__action--delete"
+                  (click)="actions.hidePopover(); trigger.focus(); deleteProduct.emit(product)"
+                  [attr.aria-label]="'Eliminar ' + product.name"
+                >
+                  Eliminar
+                </button>
+              </div>
+            </div>
           </td>
         </tr>
       }

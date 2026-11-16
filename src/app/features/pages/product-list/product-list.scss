@@ -63,7 +63,7 @@
   width: 100%;
   background-color: vars.$color-surface;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px vars.$color-shadow-card;
 }
 
 .products-footer {
@@ -87,14 +87,12 @@
     select {
       padding: 0.5rem 1rem;
       border: 2px solid vars.$color-select-border;
-      border-radius: vars.$radius-sm ;
+      border-radius: vars.$radius-sm;
       background-color: vars.$color-surface;
       color: vars.$color-text-primary;
     }
   }
 }
-
-
 
 .products-error,
 .products-empty {

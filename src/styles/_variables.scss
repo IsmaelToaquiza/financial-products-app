@@ -18,17 +18,27 @@ $color-table-header: #f9fafc;
 // Text Colors
 $color-text-primary: #38383d;
 $color-text-secondary: #6b7280;
-$color-text-brand: #0f265c;
+$color-text-brand: $color-primary;
+$color-text-control: #20274b;
+$color-text-muted: #697386;
 
 
 // Border Colors
 $color-border: #eaecf1;
 $color-input-border: #d9d9dd;
 $color-select-border: #cdcdcf;
+$color-form-input-border: #b8bdc9;
 
 // Secondary Element Colors
 $color-avatar: #c1c7d7;
 $color-button-secondary: #e9ebf2;
+$color-button-primary: #f9de4b;
+$color-button-primary-hover: #efd02c;
+$color-button-neutral: #eaecf2;
+$color-button-neutral-hover: #d9dce6;
+$color-button-danger-background: #fff5f5;
+$color-button-danger-hover: #fde8e8;
+$color-button-danger-hover-border: #e28a8a;
 $color-icon-muted: #929296;
 
 
@@ -37,6 +47,23 @@ $color-error: #ff5e63;
 $color-error-border: #ff6b70;
 $color-disabled-background: #f1f2f4;
 
+// Feedback Colors
+$color-feedback-error-text: #b42318;
+$color-feedback-error-background: #fdecec;
+$color-feedback-error-border: #f5b5b5;
+$color-feedback-success-text: #256029;
+$color-feedback-success-background: #e8f5e9;
+$color-feedback-success-border: #a5d6a7;
+
+// Skeleton Colors
+$color-skeleton-text: #64748b;
+$color-skeleton-border: #f1f5f9;
+$color-skeleton-background: #e2e8f0;
+
+// Shadow Colors
+$color-shadow-card: rgba(0, 0, 0, 0.1);
+$color-shadow-modal: rgba(0, 0, 0, 0.15);
+
 // Modal
 $color-overlay: rgba(0, 0, 0, 0.55);
-$color-modal-background: #ffffff;
+$color-modal-background: $color-surface;

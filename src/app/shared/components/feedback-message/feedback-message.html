@@ -1,1 +1,8 @@
-<p>feedback-message works!</p>
+@if (message(); as text) {
+  <div
+    class="feedback feedback--{{ type() }}"
+    [attr.role]="type() === 'error' ? 'alert' : 'status'"
+  >
+    {{ text }}
+  </div>
+}

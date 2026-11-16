@@ -55,6 +55,16 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "direct": {
+              "optimization": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.direct.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -67,6 +77,9 @@
             },
             "development": {
               "buildTarget": "financial-products-app:build:development"
+            },
+            "direct": {
+              "buildTarget": "financial-products-app:build:direct"
             }
           },
           "defaultConfiguration": "development",

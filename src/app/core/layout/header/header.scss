@@ -1,0 +1,35 @@
+@use 'variables' as vars;
+@use 'mixins' as mixins;
+
+:host {
+  display: block;
+}
+
+.header {
+  @include mixins.flex-center;
+
+  min-height: 72px;
+  padding: vars.$spacing-md vars.$spacing-lg;
+  background-color: vars.$color-surface;
+}
+
+.brand {
+  @include mixins.flex-center(1.25rem);
+  @include mixins.focus-ring(vars.$color-text-brand);
+
+  color: vars.$color-text-brand;
+  text-decoration: none;
+
+  &__icon {
+    display: inline-flex;
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
+  &__name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+}

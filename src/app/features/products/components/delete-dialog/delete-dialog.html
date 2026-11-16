@@ -1,1 +1,39 @@
-<p>delete-dialog works!</p>
+<dialog
+  #dialog
+  class="delete-dialog"
+  aria-labelledby="delete-title"
+  aria-describedby="delete-description"
+  [attr.aria-busy]="busy()"
+  (cancel)="onCancel($event)"
+>
+  <div class="delete-dialog__header">
+    <h2 id="delete-title">Eliminar producto</h2>
+  </div>
+
+  <div class="delete-dialog__content">
+    <p id="delete-description">
+      ¿Estás seguro de eliminar el producto
+      <strong>{{ product().name }}</strong>?
+    </p>
+
+    <p class="delete-dialog__warning">Esta acción no se puede deshacer.</p>
+
+    <app-feedback-message [message]="error()" type="error" />
+  </div>
+
+  <div class="delete-dialog__actions">
+    <button
+      type="button"
+      class="btn btn--cancel"
+      autofocus
+      [disabled]="busy()"
+      (click)="cancelled.emit()"
+    >
+      Cancelar
+    </button>
+
+    <button type="button" class="btn btn--confirm" [disabled]="busy()" (click)="confirmed.emit()">
+      {{ busy() ? 'Eliminando...' : 'Confirmar' }}
+    </button>
+  </div>
+</dialog>

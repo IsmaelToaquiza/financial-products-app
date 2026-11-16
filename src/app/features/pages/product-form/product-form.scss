@@ -1,0 +1,178 @@
+@use 'variables' as vars;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.product-form {
+  width: 100%;
+  max-width: 640px;
+  margin: 3rem auto;
+  background-color: vars.$color-surface;
+
+  &__header {
+    padding: 24px 32px;
+    border-bottom: 1px solid vars.$color-form-input-border;
+    text-align: center;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    color: vars.$color-text-primary;
+  }
+
+  &__body {
+    padding: 24px 36px 36px;
+  }
+
+  &__fields {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  &__back {
+    margin-bottom: vars.$spacing-lg;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: vars.$color-text-primary;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      color: vars.$color-text-secondary;
+    }
+
+    fa-icon {
+      font-size: 16px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid vars.$color-text-primary;
+      outline-offset: 3px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .product-form {
+    margin: 1.5rem auto;
+
+    &__header {
+      padding: 20px;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+
+    &__body {
+      padding: 20px;
+    }
+  }
+}
+.required-indicator {
+  color: vars.$color-feedback-error-text;
+  font-weight: 700;
+  margin-left: 2px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid vars.$color-form-input-border;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.field-error {
+  color: vars.$color-feedback-error-text;
+  font-size: 12px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.btn {
+  min-width: 120px;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+
+  &--reset {
+    background-color: vars.$color-button-neutral;
+    color: vars.$color-text-control;
+
+    &:hover {
+      background-color: vars.$color-button-neutral-hover;
+    }
+  }
+
+  &--submit {
+    background-color: vars.$color-button-primary;
+    color: vars.$color-text-control;
+
+    &:hover:not(:disabled) {
+      background-color: vars.$color-button-primary-hover;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid vars.$color-text-control;
+    outline-offset: 3px;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-field input[readonly],
+.form-field input:disabled {
+  background-color: vars.$color-disabled-background;
+  color: vars.$color-text-secondary;
+}
+
+.form-field input[aria-invalid='true'] {
+  border-color: vars.$color-feedback-error-text;
+}

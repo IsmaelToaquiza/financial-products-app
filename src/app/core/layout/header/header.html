@@ -1,3 +1,6 @@
-<header>
-  <a routerLink="/products" class="brand">BANCO</a>
+<header class="header">
+  <a routerLink="/products" class="brand" aria-label="Banco: ir al listado de productos">
+    <fa-icon class="brand__icon" [icon]="brandIcon" aria-hidden="true" />
+    <span class="brand__name">BANCO</span>
+  </a>
 </header>

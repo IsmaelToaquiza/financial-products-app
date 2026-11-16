@@ -1,12 +1,11 @@
+@use './variables' as vars;
 
-/* Box sizing consistente */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Eliminar márgenes predeterminados */
 html,
 body {
   margin: 0;
@@ -71,7 +70,7 @@ h6 {
 }
 
 :focus-visible {
-  outline: 2px solid #0f265c;
+  outline: 2px solid vars.$color-primary;
   outline-offset: 2px;
 }
 

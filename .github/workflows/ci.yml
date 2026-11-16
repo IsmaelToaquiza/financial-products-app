@@ -1,0 +1,22 @@
+name: Frontend checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@11.20.0
+      - run: npm ci
+      - run: npx tsc --noEmit -p tsconfig.spec.json
+      - run: npm run test:coverage -- --ci
+      - run: npm run build -- --configuration production
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend
+          path: dist/financial-products-app/browser

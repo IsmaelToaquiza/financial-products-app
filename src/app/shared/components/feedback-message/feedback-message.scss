@@ -1,0 +1,27 @@
+@use 'variables' as vars;
+
+:host {
+  display: block;
+}
+
+.feedback {
+  padding: 0.75rem vars.$spacing-md;
+  margin-block: vars.$spacing-md;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-sm;
+  background-color: vars.$color-table-header;
+  color: vars.$color-text-secondary;
+  overflow-wrap: anywhere;
+
+  &--success {
+    background-color: vars.$color-feedback-success-background;
+    color: vars.$color-feedback-success-text;
+    border-color: vars.$color-feedback-success-border;
+  }
+
+  &--error {
+    background-color: vars.$color-feedback-error-background;
+    color: vars.$color-feedback-error-text;
+    border-color: vars.$color-feedback-error-border;
+  }
+}

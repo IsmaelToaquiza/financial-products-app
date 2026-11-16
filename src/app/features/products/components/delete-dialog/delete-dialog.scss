@@ -1,0 +1,126 @@
+@use 'variables' as vars;
+
+.delete-dialog {
+  width: min(90vw, 480px);
+  max-height: 90vh;
+  box-sizing: border-box;
+  padding: 0;
+
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-sm;
+  background-color: vars.$color-surface;
+  color: vars.$color-text-control;
+
+  box-shadow: 0 12px 40px vars.$color-shadow-modal;
+  overflow-y: auto;
+
+  &::backdrop {
+    background-color: vars.$color-overlay;
+  }
+
+  &__header {
+    padding: 24px 28px;
+    border-bottom: 1px solid vars.$color-border;
+
+    h2 {
+      margin: 0;
+      color: vars.$color-text-control;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+  }
+
+  &__content {
+    padding: 24px 28px;
+
+    p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  &__warning {
+    margin-top: 12px !important;
+    color: vars.$color-text-muted;
+    font-size: 13px !important;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    padding: 0 28px 28px;
+  }
+
+  .btn {
+    min-width: 120px;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: vars.$radius-sm;
+
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      opacity 0.2s ease;
+
+    &--cancel {
+      background-color: vars.$color-button-neutral;
+      color: vars.$color-text-control;
+
+      &:hover:not(:disabled) {
+        background-color: vars.$color-button-neutral-hover;
+      }
+    }
+
+    &--confirm {
+      background-color: vars.$color-button-primary;
+      color: vars.$color-text-control;
+
+      &:hover:not(:disabled) {
+        background-color: vars.$color-button-primary-hover;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &:focus-visible {
+      outline: 2px solid vars.$color-text-control;
+      outline-offset: 3px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .delete-dialog {
+    width: calc(100% - 32px);
+
+    &__header,
+    &__content {
+      padding: 20px;
+    }
+
+    &__actions {
+      padding: 0 20px 20px;
+      gap: 12px;
+
+      .btn {
+        flex: 1;
+        min-width: 0;
+      }
+    }
+  }
+}

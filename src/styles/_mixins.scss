@@ -1,3 +1,4 @@
+@use './variables' as vars;
 @use 'sass:map';
 
 // Breakpoints
@@ -44,7 +45,7 @@ $breakpoints: (
 }
 
 // Accessible focus for controls
-@mixin focus-ring($color: #0f265c) {
+@mixin focus-ring($color: vars.$color-primary) {
   &:focus-visible {
     outline: 2px solid $color;
     outline-offset: 2px;

@@ -1,16 +1,16 @@
-import { ProductDto } from "../models/product.dto";
-import { Product } from "../models/product.model";
+import { toCalendarDate } from '../utils/calendar-date';
+import { ProductDto } from '../models/product.dto';
+import { Product } from '../models/product.model';
 
 export class ProductMapper {
-
   static toProduct(productDto: ProductDto): Product {
     return {
       id: productDto.id,
       name: productDto.name,
       description: productDto.description,
       logo: productDto.logo,
-      dateRelease: new Date(productDto.date_release),
-      dateRevision: new Date(productDto.date_revision),
+      dateRelease: toCalendarDate(productDto.date_release),
+      dateRevision: toCalendarDate(productDto.date_revision),
     };
   }
 
@@ -20,8 +20,8 @@ export class ProductMapper {
       name: product.name,
       description: product.description,
       logo: product.logo,
-      date_release: product.dateRelease.toISOString().split('T')[0],
-      date_revision: product.dateRevision.toISOString().split('T')[0],
+      date_release: toCalendarDate(product.dateRelease),
+      date_revision: toCalendarDate(product.dateRevision),
     };
   }
 }

@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
-  imports: [],
   selector: 'app-feedback-message',
   styleUrl: './feedback-message.scss',
   templateUrl: './feedback-message.html',
 })
-export class FeedbackMessage {}
+export class FeedbackMessage {
+  readonly message = input<string | null>(null);
+  readonly type = input<'success' | 'error' | 'info'>('info');
+}

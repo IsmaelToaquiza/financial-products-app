@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+@use './styles/reset';
 @use './styles/mixins';
 @use './styles/variables' as vars;
 
-html{
+html {
   min-height: 100%;
 }
 

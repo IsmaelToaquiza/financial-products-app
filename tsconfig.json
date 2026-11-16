@@ -9,6 +9,7 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "isolatedModules": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
@@ -17,6 +18,7 @@
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
+    "strictTemplates": true,
     "strictInputAccessModifiers": true
   },
   "files": [],

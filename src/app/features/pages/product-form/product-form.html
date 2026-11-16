@@ -1,1 +1,184 @@
-<p>product-form works!</p>
+<section class="product-form">
+  <app-feedback-message [message]="successMessage()" type="success" />
+  <app-feedback-message [message]="errorMessage()" type="error" />
+  <header class="product-form__header">
+    <h1 class="product-form__title">
+      {{ editingId ? 'Editar producto' : 'Formulario de Registro' }}
+    </h1>
+  </header>
+
+  <div class="product-form__body">
+    <a class="product-form__back" routerLink="/products">
+      <fa-icon [icon]="backIcon" aria-hidden="true" />
+      <span>Volver al listado</span>
+    </a>
+    @if (loading()) {
+      <p role="status">Cargando producto...</p>
+    }
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
+      <fieldset
+        class="product-form__fields"
+        [disabled]="saving() || loading() || (!!editingId && !productLoaded())"
+      >
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="id">ID<span class="required-indicator" aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="id"
+              formControlName="id"
+              aria-required="true"
+              [attr.aria-invalid]="
+                productForm.controls.id.touched && productForm.controls.id.invalid
+              "
+              [attr.aria-describedby]="fieldError('id') ? 'id-error' : null"
+              placeholder="Ingrese el ID"
+            />
+            @if (fieldError('id'); as message) {
+              <span id="id-error" class="field-error" role="alert">{{ message }}</span>
+            }
+            @if (productForm.controls.id.hasError('verificationUnavailable')) {
+              <button type="button" (click)="retryIdVerification()">Reintentar verificación</button>
+            }
+          </div>
+          <div class="form-field">
+            <label for="name"
+              >Nombre<span class="required-indicator" aria-hidden="true">*</span></label
+            >
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              aria-required="true"
+              [attr.aria-invalid]="
+                productForm.controls.name.touched && productForm.controls.name.invalid
+              "
+              [attr.aria-describedby]="fieldError('name') ? 'name-error' : null"
+              placeholder="Ingrese el nombre"
+            />
+            @if (fieldError('name'); as message) {
+              <span id="name-error" class="field-error" role="alert">{{ message }}</span>
+            }
+          </div>
+          <div class="form-field">
+            <label for="description"
+              >Descripción<span class="required-indicator" aria-hidden="true">*</span></label
+            >
+            <input
+              type="text"
+              id="description"
+              formControlName="description"
+              aria-required="true"
+              [attr.aria-invalid]="
+                productForm.controls.description.touched && productForm.controls.description.invalid
+              "
+              [attr.aria-describedby]="fieldError('description') ? 'description-error' : null"
+              placeholder="Ingrese la descripción"
+            />
+            @if (fieldError('description'); as message) {
+              <span id="description-error" class="field-error" role="alert">{{ message }}</span>
+            }
+          </div>
+          <div class="form-field">
+            <label for="logo"
+              >Logo<span class="required-indicator" aria-hidden="true">*</span></label
+            >
+            <input
+              type="text"
+              id="logo"
+              formControlName="logo"
+              aria-required="true"
+              [attr.aria-invalid]="
+                productForm.controls.logo.touched && productForm.controls.logo.invalid
+              "
+              [attr.aria-describedby]="fieldError('logo') ? 'logo-error' : null"
+              placeholder="Ingrese el logo"
+            />
+            @if (fieldError('logo'); as message) {
+              <span id="logo-error" class="field-error" role="alert">{{ message }}</span>
+            }
+          </div>
+          <div class="form-field">
+            <label for="dateRelease"
+              >Fecha de Liberación<span class="required-indicator" aria-hidden="true"
+                >*</span
+              ></label
+            >
+            <input
+              type="date"
+              id="dateRelease"
+              formControlName="dateRelease"
+              aria-required="true"
+              [attr.aria-invalid]="
+                productForm.controls.dateRelease.touched && productForm.controls.dateRelease.invalid
+              "
+              [attr.aria-describedby]="fieldError('dateRelease') ? 'dateRelease-error' : null"
+            />
+            @if (fieldError('dateRelease'); as message) {
+              <span id="dateRelease-error" class="field-error" role="alert">{{ message }}</span>
+            }
+          </div>
+          <div class="form-field">
+            <label for="dateRevision"
+              >Fecha de reestructuración<span class="required-indicator" aria-hidden="true"
+                >*</span
+              ></label
+            >
+            <input
+              type="date"
+              id="dateRevision"
+              formControlName="dateRevision"
+              aria-required="true"
+              [attr.aria-invalid]="
+                productForm.controls.dateRevision.touched &&
+                (productForm.controls.dateRevision.invalid ||
+                  productForm.hasError('invalidRevisionDate'))
+              "
+              [attr.aria-describedby]="
+                fieldError('dateRevision')
+                  ? 'dateRevision-error'
+                  : productForm.controls.dateRevision.touched &&
+                      productForm.hasError('invalidRevisionDate')
+                    ? 'revision-date-error'
+                    : null
+              "
+              readonly
+            />
+            @if (fieldError('dateRevision'); as message) {
+              <span id="dateRevision-error" class="field-error" role="alert">{{ message }}</span>
+            }
+          </div>
+        </div>
+
+        @if (
+          productForm.hasError('invalidRevisionDate') && productForm.controls.dateRevision.touched
+        ) {
+          <p id="revision-date-error" class="field-error" role="alert">
+            La fecha de reestructuración debe ser un año posterior a la liberación.
+          </p>
+        }
+        @if (formStatus() === 'PENDING') {
+          <p role="status">Verificando ID...</p>
+        }
+        <div class="form-actions">
+          <button
+            type="button"
+            class="btn btn--reset"
+            (click)="onReset()"
+            [disabled]="saving() || loading() || (!!editingId && !productLoaded())"
+          >
+            Reiniciar
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn--submit"
+            [disabled]="saving() || loading() || (!!editingId && !productLoaded())"
+          >
+            {{ saving() ? 'Enviando...' : 'Enviar' }}
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

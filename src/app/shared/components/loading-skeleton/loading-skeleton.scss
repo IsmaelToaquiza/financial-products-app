@@ -1,3 +1,4 @@
+@use 'variables' as vars;
 
 :host {
   display: block;
@@ -7,13 +8,13 @@
 .loading-skeleton-title {
   display: block;
   margin-bottom: 1rem;
-  color: #64748b;
+  color: vars.$color-skeleton-text;
   font-size: 0.875rem;
 }
 
 .loading-skeleton {
   padding: 0 1rem;
-  background: #fff;
+  background: vars.$color-surface;
 }
 
 .skeleton-row {
@@ -27,13 +28,13 @@
   gap: 1rem;
   align-items: center;
   padding: 1rem 0;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid vars.$color-skeleton-border;
 }
 
 .skeleton-cell {
   height: 18px;
   border-radius: 4px;
-  background: #e2e8f0;
+  background: vars.$color-skeleton-background;
   animation: skeleton-pulse 1.5s ease-in-out infinite;
 }
 

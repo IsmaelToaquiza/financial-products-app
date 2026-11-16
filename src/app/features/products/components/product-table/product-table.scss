@@ -34,23 +34,23 @@
 
   &__heading--logo,
   &__cell--logo {
-    width: 10%;
+    width: 8%;
     text-align: center;
   }
 
   &__heading--name,
   &__cell--name {
-    width: 24%;
+    width: 20%;
   }
 
   &__heading--description,
   &__cell--description {
-    width: 28%;
+    width: 26%;
   }
 
   &__heading--date,
   &__cell--date {
-    width: 18%;
+    width: 16%;
   }
 
   &__row {
@@ -104,8 +104,102 @@
     @include mixins.truncate-text;
   }
 
-  @include mixins.respond-to(tablet) {
-    min-width: 850px;
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  &__menu-trigger {
+    @include mixins.focus-ring(vars.$color-text-control);
+
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: vars.$radius-sm;
+    background: transparent;
+    color: vars.$color-text-control;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: vars.$color-table-header;
+    }
+  }
+
+  &__dropdown {
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    width: 160px;
+    max-width: calc(100vw - 16px);
+    max-height: calc(100vh - 16px);
+    padding: vars.$spacing-sm;
+    border: 1px solid vars.$color-border;
+    border-radius: vars.$radius-sm;
+    background-color: vars.$color-surface;
+    box-shadow: 0 2px 8px vars.$color-shadow-card;
+
+    &:popover-open {
+      display: flex;
+      flex-direction: column;
+      gap: vars.$spacing-sm;
+    }
+  }
+
+  &__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0.5rem 0.75rem;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+
+    &:focus-visible {
+      outline: 2px solid vars.$color-text-control;
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &--edit {
+      background-color: vars.$color-button-primary;
+      color: vars.$color-text-control;
+
+      &:hover {
+        background-color: vars.$color-button-primary-hover;
+      }
+    }
+
+    &--delete {
+      background-color: vars.$color-button-danger-background;
+      border-color: vars.$color-feedback-error-border;
+      color: vars.$color-feedback-error-text;
+
+      &:hover:not(:disabled) {
+        background-color: vars.$color-button-danger-hover;
+        border-color: vars.$color-button-danger-hover-border;
+      }
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -117,4 +211,9 @@
   @include mixins.respond-to(tablet) {
     min-width: 700px;
   }
+}
+
+.product-table__cell:last-child,
+.product-table__heading:last-child {
+  width: 14%;
 }
